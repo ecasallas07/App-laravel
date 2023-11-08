@@ -9,24 +9,11 @@
     </title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ route('home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ route('about') }}">About</a>
-                </li>
-                <li>
-                    <a href="{{ route('contact') }}">Contact</a>
-                </li>
-                <li>
-                     <a href="{{ route('services')}}"></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    {{-- //Se usa include en este caso porque al ser este elemento un layout no se puede usar el section, sino se usa el include para traer de la carpeta
+    partials que se ubica en layouts --}}
+    @include('layouts.partials.menu')
     @yield('content')
+    @include('layouts.partials.footer')
+
 </body>
 </html>

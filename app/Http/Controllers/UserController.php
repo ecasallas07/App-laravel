@@ -11,8 +11,16 @@ class UserController extends Controller
 {
     public function index()
     {
+
+        //Eloquent
+        $users = User::where('age',118)->get();
+
+        //SQL raw
         $users = DB::select( DB::raw("SELECT * FROM users") );
 
+        //table sql
+        DB::table('users')->select('name');
+        
         return view('user.index',compact('users'));
     }
 

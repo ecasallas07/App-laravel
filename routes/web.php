@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/','index')->name('home');
-Route::view('/about','about')->name('about');
-Route::view('/services','services')->name('services');
-Route::view('/contact','contact')->name('contact');
 
-
-Route::view('/email','login')->name('login');
+Route::get('/',[UserController::class,'index'])->name('user.index');
+Route::get('/create',[UserController::class,'create'])->name('user.create');
 
 
 
@@ -37,4 +33,4 @@ Route::view('/email','login')->name('login');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

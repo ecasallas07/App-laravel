@@ -31,9 +31,9 @@ class Note extends Model
     ];
 
     // Castear datos en la base de datos, en donde le especifo al elento que al recepcionar locale_set_defaultdatos que recibe castea que vengan con el tipo indicado
-    protected $casts = [
-        'description'=>'int'
-    ];
+    // protected $casts = [
+    //     'description'=>'text'
+    // ];
 
 
     // Datos que se mantienen ocultos por seguridad

@@ -26,6 +26,8 @@ class UserController extends Controller
 
     public function create()
     {
+
+        //Forma de insertar datos 01 y 02
         DB::table('users')->insert(array('name' => 'Juand'));
         $user = new User();
         $user->name = 'John';
@@ -37,6 +39,7 @@ class UserController extends Controller
         $user->save();
 
 
+        // Forma de insertar dato 03
         User::create([
             "name" => "Alejandro",
             "email" => "jhon@gmail",

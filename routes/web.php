@@ -14,7 +14,7 @@ Route::put('/note/update/{note}',[NoteController::class,'update'])->name('note.u
 Route::get('/note/show/{note}',[NoteController::class,'show'])->name('note.show');
 Route::delete('/note/destroy/{note}',[NoteController::class, 'delete'])->name('note.delete');
 
-
+Route::resource('/post',NoteController::class);
 
 
 

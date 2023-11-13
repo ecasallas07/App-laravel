@@ -7,6 +7,7 @@ use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Http\Requests\NoteRequest;
 
 class NoteController extends Controller
 {
@@ -28,7 +29,7 @@ class NoteController extends Controller
         return view('note.create');
     }
 
-    public function save(Request $request) : RedirectResponse
+    public function save(NoteRequest $request) : RedirectResponse
     {   
         
         // $note = new Note();
@@ -45,10 +46,9 @@ class NoteController extends Controller
         // // esta opcion se realiza si los name del formulario son iguales a los 
         // fillable del modelo
         
-        // dd($request->description);
+        // validate, define las regas con los atributos
         Note::create($request->all());
-
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->width('success','Note created');
     }
 
     public function edit(Note $note): View
@@ -56,18 +56,17 @@ class NoteController extends Controller
         /*DE esta forma le especificamos que sabemos que en la variable le estoy pasando un
         id, y al incluir Note en el parametro que es el modelo entonces automaticamente
         reconce que estamos busacando una nota con el id de la variable
-
         */
 
         return view('note.edit',compact('note'));
     }
     
 
-    public function update(Request $request,Note $note) : RedirectResponse
+    public function update(NoteRequest $request,Note $note) : RedirectResponse
     {
-        //En note especifico que nota s eva actualizar y luego adentro todos los campos name del request 
+        //En note especifico que nota se va actualizar y luego adentro todos los campos name del request 
         $note->update($request->all());
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->width('success','Note update');
 
         // Hacerlo de forma con POO, y sin poner el modelo Note 
         // $note = Note::find($note);
@@ -86,6 +85,6 @@ class NoteController extends Controller
     public function delete(Request $request, Note $note): RedirectResponse
     {
         $note->delete();
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->with('danger','Note deleted');
     }
 }

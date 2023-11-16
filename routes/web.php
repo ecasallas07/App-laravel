@@ -4,6 +4,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PruebaController;
 
 Route::get('/note',[NoteController::class,'index'])->name('note.index');
 Route::get('/create',[NoteController::class,'create'])->name('note.create');
@@ -16,6 +17,8 @@ Route::delete('/note/destroy/{note}',[NoteController::class, 'delete'])->name('n
 
 Route::resource('/post',NoteController::class);
 
+
+Route::get('/test',[PruebaController::class,'index']);
 
 
 

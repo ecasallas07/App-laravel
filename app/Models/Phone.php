@@ -12,6 +12,9 @@ class Phone extends Model
 
     protected $guarded =[];
 
+
+    //Relation 1 a 1
+    //Phone sigue perteneciendo a un unico usuario
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);

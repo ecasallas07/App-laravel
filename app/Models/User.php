@@ -4,10 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 
 class User extends Authenticatable
@@ -48,9 +51,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    //HasOne indica relacion de 1 a muchos 
-    public function phone():HasOne
+    //HasOne indica relacion de 1 a 1
+    // public function phone():HasOne
+    // {
+    //     return $this->hasOne(Phone::class,'user_id','id');
+    // }
+
+
+    //Hasmany  significa relacion de un unico telefono a que puede tener muchos usuario
+    //Le indico que puede tener mucho teklefonos en evez de uno
+    public function phone():HasMany
     {
-        return $this->hasOne(Phone::class,'user_id','id');
+        return $this->hasMany(Phone::class);
+    }
+
+    public function roles():BelongsToMany
+    {
+        return $this->belongsToMany(Role::class)->withPivot('add_by');
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\RelationController;
 
 Route::get('/note',[NoteController::class,'index'])->name('note.index');
 Route::get('/create',[NoteController::class,'create'])->name('note.create');
@@ -15,10 +16,14 @@ Route::put('/note/update/{note}',[NoteController::class,'update'])->name('note.u
 Route::get('/note/show/{note}',[NoteController::class,'show'])->name('note.show');
 Route::delete('/note/destroy/{note}',[NoteController::class, 'delete'])->name('note.delete');
 
+//CRUD resource
 Route::resource('/post',NoteController::class);
 
-
+//Seeders and factory
 Route::get('/test',[PruebaController::class,'index']);
+
+//Relation -foreign key - routes
+Route::get('/relation',[RelationController::class,'index']);
 
 
 

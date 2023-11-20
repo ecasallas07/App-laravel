@@ -10,8 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
-
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use App\Models\Sim;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class User extends Authenticatable
 {
@@ -68,5 +69,17 @@ class User extends Authenticatable
     public function roles():BelongsToMany
     {
         return $this->belongsToMany(Role::class)->withPivot('add_by');
+    }
+
+    // Se utiliza este tipo de relacion porque la relacion se hace a traves de telefono que tiene la la tabla user y phone tiene relacion 
+    // con sim que es la que tiene una llave foranea de phone
+    public function phoneSim(): HasOneThrough
+    {
+        return $this->hasOneThrough(Sim::class,Phone::class);
+    }
+
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class,"imageable");
     }
 }

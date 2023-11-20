@@ -7,6 +7,8 @@
         {{-- //De esta forma se accede a la relacion del usuario, phone es el n ombre de la relacion que esta en el modelo --}}
         {{-- <h2>{{ $user->phone->phone_number }}</h2> --}}
         {{-- <h2>{{ $user->phone->prefix }}</h2> --}}
+
+        {{ $user->phoneSim }}
     </div>
 
     @foreach ($user->phone as $phone)
